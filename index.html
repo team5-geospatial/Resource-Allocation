@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spatial Analysis Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #343a40;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #007BFF;
+        }
+
+        /* Carousel Styling */
+        .carousel-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Table of Contents */
+        .table-of-contents {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            padding: 30px;
+            color: white;
+            text-align: center;
+            font-size: 1.2em;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .table-of-contents:hover {
+            background: linear-gradient(135deg, #0062cc, #004bb5);
+        }
+
+        .table-of-contents h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-list li {
+            margin: 15px 0;
+        }
+
+        .toc-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .toc-link i {
+            margin-right: 10px;
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .toc-link:hover {
+            color: #f39c12;
+            transform: scale(1.05);
+        }
+
+        .toc-link:hover i {
+            transform: translateX(5px);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section Styling */
+        .analysis-section {
+            padding: 50px 30px;
+            background-color: #f4f9fb;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+            transition: background-color 0.5s ease, transform 0.3s ease;
+        }
+
+        .analysis-section:hover {
+            transform: translateY(-10px);
+            background-color: #eef6fc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #0062cc;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .analysis-text {
+            padding: 20px;
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333333;
+        }
+
+        .analysis-text h5 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        .analysis-image img {
+            width: 100%;
+            max-height: 800px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease-in-out, box-shadow 0.3s ease;
+        }
+
+        .analysis-image img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(45deg, #343a40, #007bff);
+            background-size: 400% 400%;
+            animation: gradientAnimation 5s ease infinite;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Social Media Icons in Footer */
+        footer a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #f39c12;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #007bff;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Resource Allocation</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#home"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#about"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact"></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Carousel Header -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+            <!-- Only the first item should have the "active" class -->
+            <div class="carousel-item active">
+                <img src="1.webp" class="d-block w-100" alt="First Slide">
+            </div>
+            <div class="carousel-item">
+                <img src="2.jpeg" class="d-block w-100" alt="Second Slide">
+            </div>
+            <div class="carousel-item">
+                <img src="3.png" class="d-block w-100" alt="Third Slide">
+            </div>
+            <div class="carousel-item">
+                <img src="4.jpg" class="d-block w-100" alt="Fourth Slide">
+            </div>
+            <div class="carousel-item">
+                <img src="5.jpg" class="d-block w-100" alt="Fifth Slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!-- Table of Contents Section -->
+    <section id="about" class="table-of-contents">
+        <h3>Table of Contents</h3>
+        <ul class="toc-list">
+            <li><a href="#minerals" class="toc-link"><i class="bi bi-gem"></i>MINERALS MAPPING</a></li>
+            <li><a href="#gwd" class="toc-link"><i class="bi bi-droplet-half"></i>GROUND WATER DEPTH MAPPING</a></li>
+            
+            <li><a href="#gwq" class="toc-link"><i class="bi bi-droplet"></i>GROUND WATER QUALITY ANALYSIS</a></li>
+            <li><a href="#gwqpi" class="toc-link"><i class="bi bi-water"></i>GROUND WATER POTENTIALITY MAPPING</a>
+            </li>
+            <li><a href="#SLP" class="toc-link"><i class="bi bi-geo-alt"></i>SOIL LOSS POTENTIALITY MAPPING</a>
+            </li>
+        </ul>
+    </section>
+
+    <!--1st Sections Updated with Unique IDs -->
+    <section id="minerals" class="analysis-section">
+        <div class="section-title">MINERALS MAPPING</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 analysis-image">
+                    <img src="Minerals Mapping.jpg" alt="Urban Growth Analysis">
+                </div>
+                <div class="col-md-6 analysis-text">
+                    <h5>Minerals mapping of  Chota Nagpur Plateau</h5>
+                    <p>Unlocking the Potential: Mapping the Mineral Riches and Industrial Landscape of the Chota Nagpur Plateau. Highlighting the strategic 
+                        distribution of coal fields, bauxite, manganese, copper, mica, limestone, iron ore, and thriving industries like power plants and steel 
+                        plants. #ResourceMapping #IndustrialDevelopment #ChotaNagpurPlateau</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+	<!--2nd Sections Updated with Unique IDs -->
+    <section id="gwd" class="analysis-section">
+        <div class="section-title">GROUND WATER DEPTH MAPPING</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 analysis-text">
+                    
+                    <p> <h4>Seasonal Variability:</h4>
+
+                        High groundwater areas remain relatively stable but shift slightly based on seasonal changes, ensuring crucial resources for agriculture and development.
+                        Moderate and low groundwater regions display more significant seasonal variation, impacting water availability and management needs.
+                        <h4>Resource Planning:</h4>
+                        
+                        High and moderate groundwater regions can be prioritized for agricultural and development projects.
+                        Low groundwater areas need conservation measures and supplementary water supply strategies.
+                        <h4>Strategic Importance:</h4>
+                        
+                        Northeastern regions consistently show high groundwater depth, highlighting their potential as a sustainable water source.
+                        Western and southern areas are vulnerable to water stress, requiring focused management before the onset of monsoon rains.
+                        <br>
+                        <br>
+                        This detailed seasonal analysis aids in informed water resource management and sustainable development planning in Paschim Medinipur.</p>
+                </div>
+                <div class="col-md-6 analysis-image">
+                    <img src="Ground WATER 2015.jpg" alt="Temporal Changes">
+                </div>
+            </div>
+        </div>
+    </section>
+
+	
+    
+	<!--3rd Sections Updated with Unique IDs -->
+    <section id="gwq" class="analysis-section">
+        <div class="section-title">GROUND WATER QUALITY ANALYSIS</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 analysis-text">
+                    <h5>🌍 Exploring Water Quality in Bankura District through Advanced MCDM Techniques 🌍</h5>
+                    <p>
+                        <h4>Map 1:</h4> 🔍 Water Quality Distribution by Block
+                        This map offers a comprehensive view of water quality across various blocks in the Bankura district. The analysis is based on diverse contaminant data meticulously sourced from the Central Ground Water Board (CGWB) to ensure a detailed and accurate representation.
+                        <br>
+                        <h4>Map 2:</h4>📊  Block-Wise Water Quality in Pie Charts
+                        To enhance understanding, this map visually breaks down water quality parameters using pie charts for each block. This graphical representation provides an intuitive comparison of water quality across the district, highlighting variations and trends.
+                        <br>
+                        <h4>🧮 Methodology</h4>
+                        Data Collection: 
+                        <br>Groundwater contaminant data was sourced from CGWB.
+                        Weight Determination: 
+                        <br>The CRITIC (Criteria Importance Through Intercriteria Correlation) method was applied to assign weights to contaminants, ensuring an objective evaluation of their significance.
+                        Rank Calculation: 
+                        <br>The VIKOR (VlseKriterijumska Optimizacija I Kompromisno Resenje) method was employed to rank the blocks based on overall water quality, identifying priority areas for intervention and improvement.
+                        <br>
+                        
+                        These maps are more than just visualizations; they are powerful tools for researchers, environmentalists, and policymakers. By illustrating the current state of water quality in the Bankura district, they provide actionable insights to guide effective water management strategies and improve water quality for the community</p>
+                </div>
+                <div class="col-md-6 analysis-image">
+                    <img src="WATER_QUALITY.jpg" alt="Temporal Changes">
+                    <img src="WATER_QUALITY_PI_CHART.jpg" alt="Temporal Changes">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--4th Sections Updated with Unique IDs -->
+    <section id="gwqpi" class="analysis-section">
+        <div class="section-title">GROUND WATER POTENTIALITY MAPPING</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 analysis-image">
+                    <img src="GROUND_WATER_POTENTIALLITY.jpg" alt="Urban Growth Analysis">
+                </div>
+                <div class="col-md-6 analysis-text">
+                    <h4>Groundwater Potentiality Map of Kangsabati Upper River Basin 🌊</h4>
+                    <p>This map illustrates the groundwater potential zones within the Kangsabati Upper River Basin, categorized into five classes: Excellent, Good, Moderate, Fair, and Poor. The classification is based on hydrological and geospatial parameters, offering insights into the spatial distribution of groundwater resources.
+
+                       <h6>Excellent Zones (Red):</h6>  Highest groundwater availability, ideal for resource utilization.
+                        <h6>Good Zones (Orange):</h6> Significant groundwater potential, suitable for agriculture and domestic use.
+                        <h6>Moderate Zones (Yellow):</h6> Adequate availability, requiring sustainable management.
+                        <h6>Fair and Poor Zones (Green):</h6> Limited groundwater potential, highlighting conservation needs.
+                        <br>
+                     
+                        This analysis aids policymakers, researchers, and planners in making informed decisions for sustainable water resource management in the basin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--5th Sections Updated with Unique IDs -->
+    <section id="SLP" class="analysis-section">
+        <div class="section-title">SOIL LOSS POTENTIALITY MAPPING</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 analysis-text">
+                    <h5>Soil Loss Potential Zonation of Kangsabati River Basin</h5>
+                    <p>This map highlights the soil loss potential of the Kangsabati River Basin, categorized into five classes: Very Low, Low to Moderate, Moderate to High, High to Very High, and Very High. Areas in red represent critical zones prone to severe erosion, while green areas indicate stable zones with minimal risk.
+                        <br>
+                        The map provides key insights for sustainable land management and soil conservation planning.</p>
+                </div>
+                <div class="col-md-6 analysis-image">
+                    <img src="SLP.jpg" alt="Temporal Changes">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 PortfolioByMdJahid | All Rights Reserved</p>
+        <div>
+            <a href="mailto:mdjahid.ac.in@gmail.com" class="text-white"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/md-jahid-221891292/" class="text-white"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/mdjahid07" class="text-white"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+   <!-- Bootstrap and jQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> <!-- Use slim.min.js for compatibility with Bootstrap 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
